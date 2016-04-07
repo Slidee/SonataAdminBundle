@@ -140,6 +140,26 @@ and use `sonata_admin_content` block.
         Your content here
     {% endblock %}
 
+You will need to return all the data you need from your controller, and the admin pool you want to use.
+
+.. code-block:: php
+    
+    /**
+     * @Template("AppBundle:Object:clone.html.twig")
+     */
+    public function cloneAction()
+    {
+        //Find the targetted object
+        $object = $this->admin->getSubject();
+
+        //Return vars for the view
+        return array(
+            'object' => $object,
+            'admin_pool' => $this->get('sonata.admin.pool')
+        );
+    }
+
+
 Create a template for the new action
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
